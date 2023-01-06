@@ -1,6 +1,7 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
+import ExtApi from './plugins/extapi'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -9,5 +10,5 @@ export default defineConfig({
   build: {
     outDir: resolve(__dirname, 'extension/dist')
   },
-  plugins: [Vue()]
+  plugins: [Vue(), ExtApi()]
 })

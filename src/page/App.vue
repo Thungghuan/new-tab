@@ -1,5 +1,12 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import HelloWorld from '../components/HelloWorld.vue'
+
+// The next line will be transform during building process
+const wallpaper = '%%TOBETRANSFORM%%'
+
+const wallpaperUrl = ref('')
+wallpaperUrl.value = wallpaper
 </script>
 
 <template>
@@ -12,6 +19,7 @@ import HelloWorld from '../components/HelloWorld.vue'
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
+  <div>Background URL: {{ wallpaperUrl }}</div>
 </template>
 
 <style scoped>

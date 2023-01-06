@@ -10,12 +10,17 @@ export async function getManifest() {
     name: pkg.name,
     description: pkg.description,
     version: pkg.version,
+    host_permissions: ['https://www.bing.com/HPImageArchive.aspx'],
+    background: {
+      service_worker: 'dist/background/index.js'
+    },
     action: {
       default_icon: {
         16: 'assets/huan16.png',
         32: 'assets/huan32.png'
       }
     },
+    permissions: ['storage'],
     icons: {
       16: 'assets/huan16.png',
       32: 'assets/huan32.png',
