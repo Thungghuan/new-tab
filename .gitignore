@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # output extension directiory
-extension
+extension/manifest.json
