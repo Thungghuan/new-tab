@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
-const today = new Date()
+const now = new Date()
 
-const hour = ref(today.getHours())
-const minute = ref(today.getMinutes())
-const second = ref(today.getSeconds())
+const hour = ref(now.getHours())
+const minute = ref(now.getMinutes())
+const second = ref(now.getSeconds())
+
+const timeoutIdx = ref<ReturnType<typeof setTimeout>>()
 
 function tick() {
+  clearTimeout(timeoutIdx.value)
+
   let carryMinute = false,
     carryHour = false
 
@@ -33,6 +37,9 @@ function tick() {
       carryHour = false
     }
   }
+
+  const now = new Date()
+  timeoutIdx.value = setTimeout(tick, 1000 - now.getMilliseconds())
 }
 
 const formatHour = computed(() => (hour.value < 10 ? '0' : '') + hour.value)
@@ -43,7 +50,7 @@ const formatSecond = computed(
   () => (second.value < 10 ? '0' : '') + second.value
 )
 
-setInterval(tick, 1000)
+timeoutIdx.value = setTimeout(tick, 1000 - now.getMilliseconds())
 </script>
 
 <template>
