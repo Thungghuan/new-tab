@@ -2,6 +2,7 @@ import broswer from 'webextension-polyfill'
 
 interface RespImage {
   url: string
+  copyright?: string
 }
 interface WallPaperResp {
   images: RespImage[]
@@ -17,10 +18,9 @@ async function getDailyWallPaper() {
   console.log(data)
 
   await broswer.storage.local.set({
-    'daily-wp': data.images[0].url
+    'daily-wp-url': data.images[0].url,
+    'daily-wp-cr': data.images[0].copyright ?? ''
   })
-
-  return 'https://bing.com' + data.images[0].url
 }
 
 getDailyWallPaper()

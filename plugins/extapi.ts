@@ -1,19 +1,20 @@
 import { Plugin } from 'vite'
 
 function transformWallPaper(src: string) {
-  if (!/const wallpaper = ".*"/.test(src)) return
+  if (!/wallpaperUrl.value = ".*"/.test(src)) return
 
   const transformed = `import broswer from 'webextension-polyfill';` + src
 
   return transformed
     .replace(
-      /const wallpaper = ".*"/,
-      `broswer.storage.local.get(['daily-wp']).then((storage) => {
-       wallpaperUrl.value = storage['daily-wp']
-     });
-     `
+      /wallpaperUrl.value = ".*"/,
+      `broswer.storage.local.get(['daily-wp-url', 'daily-wp-cr']).then((storage) => {
+        console.log(storage)
+        wallpaperUrl.value = storage['daily-wp-url']
+        wallpaperCR.value = storage['daily-wp-cr']
+      });`
     )
-    .replace(`wallpaperUrl.value = wallpaper`, '')
+    .replace(/wallpaperCR.value = ".*"/, '')
 }
 
 export default function ExtApi(): Plugin {
