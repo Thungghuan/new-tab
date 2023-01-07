@@ -1,37 +1,24 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import HelloWorld from '../components/HelloWorld.vue'
-
-// The next line will be transform during building process
-const wallpaper = '%%TOBETRANSFORM%%'
 
 const wallpaperUrl = ref('')
+
+// The next two lines will be transform during building process in plugins/extapi.ts
+// The `wallpaperUrl` will be set to the real url storage by Chrome
+const wallpaper =
+  '/th?id=OHR.BlackFell_EN-CN9766859930_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp'
 wallpaperUrl.value = wallpaper
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="./vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
-  <div>Background URL: {{ wallpaperUrl }}</div>
+  <div
+    wfull
+    hfull
+    :style="{
+      background: `url(https://bing.com${wallpaperUrl})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+      backgroundSize: 'cover'
+    }"
+  ></div>
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
