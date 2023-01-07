@@ -36,6 +36,7 @@ const dayString = ref(dayInWeek[today.getDay()])
     bg-gray-50
     opacity-80
     flex="~ col"
+    class="date-text"
   >
     <div color-sky-800 font-bold scale-120>{{ monthString }}</div>
     <div
@@ -54,4 +55,8 @@ const dayString = ref(dayInWeek[today.getDay()])
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.date-text {
+  font-size: 16px;
+}
+</style>

@@ -20,7 +20,8 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  max-height: 100vh;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
 }
 
 h1 {
@@ -53,6 +54,7 @@ button:focus-visible {
   width: 100vw;
   height: 100vh;
   text-align: center;
+  overflow: hidden;
 }
 
 @media (prefers-color-scheme: light) {

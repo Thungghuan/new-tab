@@ -57,6 +57,7 @@ setInterval(tick, 1000)
       items-center
       color-slate-600
       scale-350
+      class="clock-text"
     >
       <div>{{ formatHour }}</div>
       <div>:</div>
@@ -66,3 +67,9 @@ setInterval(tick, 1000)
     </div>
   </div>
 </template>
+
+<style scoped>
+.clock-text {
+  font-size: 16px;
+}
+</style>
