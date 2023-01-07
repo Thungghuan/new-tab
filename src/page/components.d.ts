@@ -7,6 +7,9 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Calendar: typeof import('./../components/Calendar.vue')['default']
+    Clock: typeof import('./../components/Clock.vue')['default']
     CopyRight: typeof import('./../components/CopyRight.vue')['default']
+    Date: typeof import('./../components/Date.vue')['default']
   }
 }

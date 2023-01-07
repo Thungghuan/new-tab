@@ -16,6 +16,7 @@ wallpaperCR.value = 'CopyRight Text'
     wfull
     hfull
     relative
+    flex
     :style="{
       background: `url(https://bing.com${wallpaperUrl})`,
       backgroundRepeat: 'no-repeat',
@@ -23,6 +24,15 @@ wallpaperCR.value = 'CopyRight Text'
       backgroundSize: 'cover'
     }"
   >
+    <div w="3/5" flex justify-center items-center>
+      <Calendar />
+    </div>
+    <div w="2/5" flex="~ col">
+      <div my4 h40 flex justify-center items-center>
+        <Clock />
+        <Date />
+      </div>
+    </div>
     <CopyRight :text="wallpaperCR" />
   </div>
 </template>
