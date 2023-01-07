@@ -14,7 +14,7 @@ async function getDailyWallPaper() {
   const resp = await fetch(url)
   const data = (await resp.json()) as WallPaperResp
 
-  console.log('https://bing.com' + data.images[0].url)
+  console.log(data)
 
   await broswer.storage.local.set({
     'daily-wp': data.images[0].url
