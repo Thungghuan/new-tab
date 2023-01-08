@@ -6,9 +6,10 @@ const wallpaperCR = ref('')
 
 // The under lines will be transform during building process in plugins/extapi.ts
 // The `wallpaperUrl` will be set to the real url storage by Chrome
-wallpaperUrl.value =
-  '/th?id=OHR.BlackFell_EN-CN9766859930_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp'
-wallpaperCR.value = 'CopyRight Text'
+// %%EXTAPI-TRANSFORM%%
+wallpaperUrl.value = '/th?id=OHR.HermelinSchnee_ZH-CN8839783506_1920x1080.jpg'
+wallpaperCR.value =
+  '白鼬 (Mustela erminea), 上巴伐利亚，德国 (© Konrad Wothe/Minden Pictures)'
 </script>
 
 <template>

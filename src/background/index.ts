@@ -24,3 +24,7 @@ async function getDailyWallPaper() {
 }
 
 getDailyWallPaper()
+
+broswer.runtime.onInstalled.addListener(async () => {
+  await broswer.storage.local.clear()
+})

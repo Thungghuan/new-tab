@@ -8,6 +8,7 @@
     "check": "vue-tsc",
     "clear": "rimraf extension/dist extension/manifest.json",
     "dev": "vite",
+    "inspect": "npm run build && vite serve src/page/.vite-inspect",
     "build": "run-s check clear build:*",
     "build:prepare": "esno scripts/prepare.ts",
     "build:page": "vite build",
@@ -31,6 +32,7 @@
     "unocss": "^0.48.2",
     "unplugin-vue-components": "^0.22.12",
     "vite": "^4.0.0",
+    "vite-plugin-inspect": "^0.7.12",
     "vue-tsc": "^1.0.11",
     "webextension-polyfill": "^0.10.0"
   }
