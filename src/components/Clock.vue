@@ -12,33 +12,12 @@ const timeoutIdx = ref<ReturnType<typeof setTimeout>>()
 function tick() {
   clearTimeout(timeoutIdx.value)
 
-  let carryMinute = false,
-    carryHour = false
-
-  if (second.value < 59) second.value++
-  else {
-    second.value = 0
-    carryMinute = true
-  }
-
-  if (carryMinute) {
-    if (minute.value < 59) minute.value++
-    else {
-      minute.value = 0
-      carryMinute = false
-      carryHour = true
-    }
-  }
-
-  if (carryHour) {
-    if (hour.value < 23) hour.value++
-    else {
-      hour.value = 0
-      carryHour = false
-    }
-  }
-
   const now = new Date()
+
+  hour.value = now.getHours()
+  minute.value = now.getMinutes()
+  second.value = now.getSeconds()
+
   timeoutIdx.value = setTimeout(tick, 1000 - now.getMilliseconds())
 }
 
