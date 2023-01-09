@@ -1,32 +1,29 @@
 import { Plugin } from 'vite'
+import fs from 'fs-extra'
 
-function transformWallPaper(src: string) {
+async function resolveCode() {
+  const rawCode = (await fs.readFile('./plugins/code.ts')).toString()
+  const importCode = /^import.*/gm
+
+  return {
+    importCode: rawCode.match(importCode)?.join('\n'),
+    sourceCode: rawCode.replace(importCode, '')
+  }
+}
+
+async function transformWallPaper(src: string) {
   if (!/%%EXTAPI-TRANSFORM%%/.test(src)) return
 
-  const preImport = `import browser from 'webextension-polyfill';`
+  const { importCode, sourceCode } = await resolveCode()
+
   const transformed = src
     .replace(
       '<script setup lang="ts">',
       `<script setup lang="ts">
-${preImport}
+${importCode}
 `
     )
-    .replace(
-      '// %%EXTAPI-TRANSFORM%%',
-      `
-browser.runtime.sendMessage({ msg: 'wp@update' })
-
-browser.storage.local.get(['daily-wp-url', 'daily-wp-cr']).then((storage) => {
-  wallpaperUrl.value = storage['daily-wp-url']
-  wallpaperCR.value = storage['daily-wp-cr']
-});
-browser.storage.onChanged.addListener((changes, namespace) => {
-  for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
-    if (key === 'daily-wp-url') wallpaperUrl.value = newValue
-    if (key === 'daily-wp-cr') wallpaperCR.value = newValue
-  }
-});`
-    )
+    .replace('// %%EXTAPI-TRANSFORM%%', sourceCode)
     .replace(/wallpaperUrl.value\s+=\s+['"].*['"]/, '')
     .replace(/wallpaperCR.value\s+=\s+['"].*['"]/, '')
 
@@ -37,13 +34,13 @@ export default function ExtApi(): Plugin {
   return {
     name: 'extapi',
     enforce: 'pre',
-    transform(src, id) {
+    async transform(src, id) {
       if (/App\.vue/.test(id)) {
         return {
           code:
             process.env['NODE_ENV'] === 'development'
               ? src
-              : transformWallPaper(src)
+              : await transformWallPaper(src)
         }
       }
     }
