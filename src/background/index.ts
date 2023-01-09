@@ -28,3 +28,10 @@ getDailyWallPaper()
 broswer.runtime.onInstalled.addListener(async () => {
   await broswer.storage.local.clear()
 })
+
+broswer.runtime.onMessage.addListener((message) => {
+  console.log(message)
+  if (message.msg === 'wp@update') {
+    getDailyWallPaper()
+  }
+})

@@ -14,6 +14,8 @@ ${preImport}
     .replace(
       '// %%EXTAPI-TRANSFORM%%',
       `
+browser.runtime.sendMessage({ msg: 'wp@update' })
+
 browser.storage.local.get(['daily-wp-url', 'daily-wp-cr']).then((storage) => {
   wallpaperUrl.value = storage['daily-wp-url']
   wallpaperCR.value = storage['daily-wp-cr']
