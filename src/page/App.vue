@@ -19,7 +19,9 @@ wallpaperCR.value =
     relative
     flex
     :style="{
-      background: `url(https://bing.com${wallpaperUrl})`,
+      background: wallpaperUrl
+        ? `url(https://bing.com${wallpaperUrl})`
+        : 'white',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',
       backgroundSize: 'cover'

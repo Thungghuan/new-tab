@@ -2,7 +2,7 @@ import { Plugin } from 'vite'
 import fs from 'fs-extra'
 
 async function resolveCode() {
-  const rawCode = (await fs.readFile('./plugins/code.ts')).toString()
+  const rawCode = (await fs.readFile('src/extapi/index.ts')).toString()
   const importCode = /^import.*/gm
 
   return {
