@@ -1,4 +1,4 @@
-import broswer from 'webextension-polyfill'
+import browser from 'webextension-polyfill'
 
 interface RespImage {
   url: string
@@ -17,7 +17,7 @@ async function getDailyWallPaper() {
 
   console.log(data)
 
-  await broswer.storage.local.set({
+  await browser.storage.local.set({
     'daily-wp-url': data.images[0].url,
     'daily-wp-cr': data.images[0].copyright ?? ''
   })
@@ -25,11 +25,11 @@ async function getDailyWallPaper() {
 
 // getDailyWallPaper()
 
-broswer.runtime.onInstalled.addListener(async () => {
-  await broswer.storage.local.clear()
+browser.runtime.onInstalled.addListener(async () => {
+  await browser.storage.local.clear()
 })
 
-broswer.runtime.onMessage.addListener((message) => {
+browser.runtime.onMessage.addListener((message) => {
   console.log(message)
   if (message.msg === 'wp@update') {
     getDailyWallPaper()
