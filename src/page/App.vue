@@ -35,6 +35,7 @@ wallpaperCR.value =
         <Clock />
         <Date />
       </div>
+      <TodoList />
     </div>
     <CopyRight :text="wallpaperCR" />
   </div>

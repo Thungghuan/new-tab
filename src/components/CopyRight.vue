@@ -14,7 +14,14 @@ defineProps<{
     absolute
     right-5
     bottom-10
+    class="copyright-text"
   >
     {{ text }}
   </div>
 </template>
+
+<style scoped>
+.copyright-text {
+  font-size: 12px;
+}
+</style>

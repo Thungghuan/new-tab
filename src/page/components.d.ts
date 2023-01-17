@@ -11,5 +11,7 @@ declare module '@vue/runtime-core' {
     Clock: typeof import('./../components/Clock.vue')['default']
     CopyRight: typeof import('./../components/CopyRight.vue')['default']
     Date: typeof import('./../components/Date.vue')['default']
+    TodoItem: typeof import('./../components/TodoList/TodoItem.vue')['default']
+    TodoList: typeof import('./../components/TodoList/index.vue')['default']
   }
 }
