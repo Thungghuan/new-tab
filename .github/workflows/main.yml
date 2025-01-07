@@ -35,7 +35,7 @@ jobs:
       run: pnpm run build
 
     - name: Compress extension folder to ZIP
-      run: zip -r extension.zip extension
+      run: zip -r newtab.zip extension
 
     - name: Generate Release.txt
       run: |
