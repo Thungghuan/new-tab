@@ -47,4 +47,4 @@ jobs:
       with:
         files: |
           Release.txt
-          extension.zip
+          newtab.zip
